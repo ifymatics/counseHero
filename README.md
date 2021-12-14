@@ -59,7 +59,10 @@ SUCCESS(200):
 }
 
 student request to participate in event:
-POST:http://localhost:5000/api/student/events/<evend id here>/participation-request
+POST:http://localhost:5000/api/student/events/<event id here>/participation-request
+header {
+authorization: <Bearer token>
+}
 
 body {
 "participationRequest":"I want to participate"
@@ -70,8 +73,21 @@ SUCCESS(200):
 }
 FAILED(400):
 {"errors":[{"message":"Unathorized!"}]}
+
+POST: http://localhost:5000/api/student/auth/refresh-token
+
+header {
+authorization: <Bearer token>
+}
+
+body{
+"refreshToken":"YOUR_REFRESH_TOKEN"
+}
+
 ##################################################
+
 COUNSELOR END POINTS
+
 signup COUNSELOR:
 POST:http://localhost:5000/api/student/auth/signup
 
@@ -83,7 +99,9 @@ body {
 "password":"123456",
 "organizationId":"61b4cc3a938b46557befaaf4"
 }
+
 SUCCESS(200):
+
 {
 "id":"61b5103cceeeb1fd279719d4"
 "userName":"myUsername",
@@ -93,6 +111,7 @@ SUCCESS(200):
 "password":"123456",
 "organizationId":"61b4cc3a938b46557befaaf4"
 }
+
 FAILED(500):
 
 {
@@ -102,7 +121,9 @@ FAILED(500):
 }
 ]
 }
+
 login COUNSELOR:
+
 POST:http://localhost:5000/api/counselor/auth/login
 
 body {
@@ -119,7 +140,12 @@ SUCCESS(200):
 }
 
 COUNSELOR creates event:
+
 POST:http://localhost:5000/api/counselor/events
+
+header {
+authorization: <Bearer token>
+}
 
 body {
 "name":"Get Together",
@@ -128,6 +154,7 @@ body {
 "description":"This is a student get Together",
 "date":"2021-12-13T22:16:59.781Z"
 }
+
 SUCCESS(200):
 
 {
@@ -137,4 +164,18 @@ SUCCESS(200):
 "backgroundImage":"img.png",
 "description":"This is a student get Together",
 "date":"2021-12-13T22:16:59.781Z"
+}
+
+counselor approve or reject student's request to join event:
+
+POST:http://localhost:5000/api/counselor/events/<event id here>
+
+header {
+authorization: <Bearer token>
+}
+
+body{
+"studentId":"61b51cd47927cfad08e3f6d2",
+"status":"rejected",
+"eventId":"61b6c68c8b333fbbfd350e16"
 }
