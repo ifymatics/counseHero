@@ -61,7 +61,7 @@ SUCCESS(200):
 student request to participate in event:
 POST:http://localhost:5000/api/student/events/<event id here>/participation-request
 header {
-authorization: <Bearer token>
+authorization: "Bearer YOUR_TOKEN"
 }
 
 body {
@@ -77,7 +77,7 @@ FAILED(400):
 POST: http://localhost:5000/api/student/auth/refresh-token
 
 header {
-authorization: <Bearer token>
+authorization: "Bearer YOUR_TOKEN"
 }
 
 body{
@@ -144,7 +144,7 @@ COUNSELOR creates event:
 POST:http://localhost:5000/api/counselor/events
 
 header {
-authorization: <Bearer token>
+authorization: "Bearer YOUR_TOKEN"
 }
 
 body {
@@ -171,7 +171,7 @@ counselor approve or reject student's request to join event:
 POST:http://localhost:5000/api/counselor/events/<event id here>
 
 header {
-authorization: <Bearer token>
+authorization: "Bearer YOUR_TOKEN"
 }
 
 body{
