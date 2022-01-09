@@ -10,8 +10,9 @@ export const db = async () => {
         const connected = await connect(`${process.env.MONGODB_CONNECTION_URI}`);
 
         return connected;
-    } catch (error) {
-        connection.close();
+    } catch (error: any) {
+        throw new Error(error.message)
+        //connection.close();
 
     }
 }

@@ -1,7 +1,7 @@
 import { EventAttr } from "../models/events";
 
 /**
- * Function for connecting to MongoDb database
+ * Function for filtering Events
  * @function 
  * @params []event, userId - string
  * @returns {Object} - filtered events object
